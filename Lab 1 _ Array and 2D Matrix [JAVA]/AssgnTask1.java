@@ -5,12 +5,33 @@ class AssgnTask1{
     //YOU ONLY HAVE TO SUBMIT THIS METHOD, NO OTHER DRIVER CODE
     public static Integer rowRotation( Integer examWeek, String[][] matrix ){
 
-        //For this task you don't need to create new Matrix
-	//You can create 1D array if you need (but you can do it without creating any 1D array as well)
-        //After rotation the Matrix should be printed inside the method
-        //Only the integer row number is to be returned
+        String friendSeat = "AA";
+        String temp = null;
+        
+        for (int k = 0; k < examWeek-1; k++) {
+            for (int i = 1; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[0].length; j++) {
+                    temp = matrix[0][j];
+                    matrix[0][j] = matrix[i][j]; 
+                    matrix[i][j] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.print("|");
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(" " + String.format("%-3s", matrix[i][j]) + "|");
+            }
+            System.out.println();
+        }
 
-        //TO DO
+        for (int i = 0; i < matrix.length; i++) {
+            for (String seats : matrix[i]) {
+                if (seats.equals(friendSeat)) {
+                    return i+1;
+                }
+            }
+        }
         return null;
     }
 

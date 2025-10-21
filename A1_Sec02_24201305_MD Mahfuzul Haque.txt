@@ -1,0 +1,154 @@
+Assignment Task 1:
+
+    public static Integer rowRotation( Integer examWeek, String[][] matrix ){
+
+        String friendSeat = "AA";
+        String temp = null;
+        
+        for (int k = 0; k < examWeek-1; k++) {
+            for (int i = 1; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[0].length; j++) {
+                    temp = matrix[0][j];
+                    matrix[0][j] = matrix[i][j]; 
+                    matrix[i][j] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.print("|");
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(" " + String.format("%-3s", matrix[i][j]) + "|");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (String seats : matrix[i]) {
+                if (seats.equals(friendSeat)) {
+                    return i+1;
+                }
+            }
+        }
+        return null;
+    }
+
+
+Assignment Task 2:
+
+    public static Integer[][] compressMatrix( Integer[][] matrix ){
+
+        Integer[][] res = new Integer[matrix.length/2][matrix[0].length/2];
+        for (Integer[] integers : res) {
+            for (int i = 0; i < integers.length; i++) {
+                integers[i] = 0;
+            }
+        }
+        
+        int x = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            int y = 0;
+            for (int j = 0; j < matrix[0].length; j++) {
+                res[x][y] += matrix[i][j];
+                if (j%2 != 0) {
+                    y++;
+                }
+            }
+            if (i%2 != 0) {
+                x++;
+            }
+        }
+
+        return res;
+    }
+
+
+Assignment Task 3:
+
+        public static void playGame( Integer[][] arena ){
+
+        int points = 0;
+        for (int i = 0; i < arena.length; i++) {
+            for (int j = 0; j < arena[0].length; j++) {
+                if (arena[i][j]%50 == 0 && arena[i][j] != 0) {
+                    if (i+1 < arena.length) {
+                        if (arena[i+1][j] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (i > 0) {
+                        if (arena[i-1][j] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (j + 1 < arena[0].length) {
+                        if (arena[i][j+1] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (j > 0) {
+                        if (arena[i][j-1] == 2) {
+                            points += 2;
+                        }
+                    }
+                }
+            }
+        }
+        
+        System.out.printf("Points gained: %s. ", points);
+        if (points >= 10) {
+            System.out.println("Your team has survived the game.");
+        } else {
+            System.out.println("Your team is out.");
+        }
+    }
+
+
+Assignment Task 4:
+
+        public static void rotateLayer(Character[][] board, int layerNumber) {
+        int i = layerNumber;
+        int j = layerNumber;
+        char temp;
+
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[i][++j];
+            board[i][j] = temp;
+            if ((j >= (board.length-layerNumber-1))) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[++i][j];
+            board[i][j] = temp;
+            if ((i >= (board.length-layerNumber-1))) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[i][--j];
+            board[i][j] = temp;
+            if ((j <= layerNumber)) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[--i][j];
+            board[i][j] = temp;
+            if (i <= layerNumber) {
+                break;
+            }
+        }
+    }
+
+    public static void rotateSecret( Character[][] board ){
+
+        for (int i = 0; i < board.length/2; i++) {
+            for (int j = i; j < board.length/2; j++) {
+                rotateLayer(board, i);
+            }
+        }
+    }

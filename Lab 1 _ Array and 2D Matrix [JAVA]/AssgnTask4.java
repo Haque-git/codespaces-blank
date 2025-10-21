@@ -5,10 +5,54 @@ class AssgnTask4{
     //YOU ONLY HAVE TO SUBMIT THIS METHOD, NO OTHER DRIVER CODE
     //If needed you can create extra helper static methods
     //if extra helper methods are used then you must submit those as well
+
+    public static void rotateLayer(Character[][] board, int layerNumber) {
+        int i = layerNumber;
+        int j = layerNumber;
+        char temp;
+
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[i][++j];
+            board[i][j] = temp;
+            if ((j >= (board.length-layerNumber-1))) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[++i][j];
+            board[i][j] = temp;
+            if ((i >= (board.length-layerNumber-1))) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[i][--j];
+            board[i][j] = temp;
+            if ((j <= layerNumber)) {
+                break;
+            }
+        }
+        while (true) {
+            temp = board[layerNumber][layerNumber];
+            board[layerNumber][layerNumber] = board[--i][j];
+            board[i][j] = temp;
+            if (i <= layerNumber) {
+                break;
+            }
+        }
+        
+    }
+
     public static void rotateSecret( Character[][] board ){
 
-        //Print the message inside of this method
-        //TO DO
+        for (int i = 0; i < board.length/2; i++) {
+            for (int j = i; j < board.length/2; j++) {
+                rotateLayer(board, i);
+            }
+        }
 
     }
 

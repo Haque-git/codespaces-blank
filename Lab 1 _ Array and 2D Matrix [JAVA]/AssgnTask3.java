@@ -5,10 +5,40 @@ class AssgnTask3{
     //YOU ONLY HAVE TO SUBMIT THIS METHOD, NO OTHER DRIVER CODE
     public static void playGame( Integer[][] arena ){
 
-        //For this task you don't need to create any new 2D array
-        //just print the result inside the function
+        int points = 0;
+        for (int i = 0; i < arena.length; i++) {
+            for (int j = 0; j < arena[0].length; j++) {
+                if (arena[i][j]%50 == 0 && arena[i][j] != 0) {
+                    if (i+1 < arena.length) {
+                        if (arena[i+1][j] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (i > 0) {
+                        if (arena[i-1][j] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (j + 1 < arena[0].length) {
+                        if (arena[i][j+1] == 2) {
+                            points += 2;
+                        }
+                    }
+                    if (j > 0) {
+                        if (arena[i][j-1] == 2) {
+                            points += 2;
+                        }
+                    }
+                }
+            }
+        }
         
-        //TO DO
+        System.out.printf("Points gained: %s. ", points);
+        if (points >= 10) {
+            System.out.println("Your team has survived the game.");
+        } else {
+            System.out.println("Your team is out.");
+        }
     }
 
     //DO NOT CHANGE ANY DRIVER CODE BELOW THIS LINE

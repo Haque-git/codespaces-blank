@@ -5,12 +5,30 @@ class AssgnTask2{
     //YOU ONLY HAVE TO SUBMIT THIS METHOD, NO OTHER DRIVER CODE
     public static Integer[][] compressMatrix( Integer[][] matrix ){
 
-        //For this task you'll need to create new 2D array
+        Integer[][] res = new Integer[matrix.length/2][matrix[0].length/2];
+        for (Integer[] integers : res) {
+            for (int i = 0; i < integers.length; i++) {
+                integers[i] = 0;
+            }
+        }
         
-        //TO DO
+        
+        int x = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            int y = 0;
+            for (int j = 0; j < matrix[0].length; j++) {
+                res[x][y] += matrix[i][j];
+                if (j%2 != 0) {
+                    y++;
+                }
+            }
+            if (i%2 != 0) {
+                x++;
+            }
+        }
 
-        //remove the line below and return the newly created Compressed 2D matrix
-        return null;
+
+        return res;
     }
 
     //DO NOT CHANGE ANY DRIVER CODE BELOW THIS LINE
