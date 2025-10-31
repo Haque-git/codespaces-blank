@@ -43,4 +43,9 @@ class Arr{
         return maxWidth;
     }
 
+    public static boolean compare2D(Character[][] outputBoard, Character[][] board) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compare2D'");
+    }
+
 }
