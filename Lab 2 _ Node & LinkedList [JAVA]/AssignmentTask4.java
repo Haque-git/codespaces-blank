@@ -4,12 +4,36 @@ public class AssignmentTask4{
     // MUST SUBMIT this method
     public static Node idGenerator(Node head1, Node head2, Node head3) {
         
-        //TO DO
-        //Hint: the Node elements are actually Object, you can type cast them
-        //      into int or Integer like the following:
-        //        (int)n.elem  or  (Integer)n.elem
+        Node prev = null;
+        Node curr = head1;
+        Node tail = head1;
+        
 
-        return null; // Remove this when you're ready to return the new head
+        while (curr != null) {
+            Node next = curr.next;
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head1 = prev;
+
+
+        Node ptr2 = head2;
+        Node ptr3 = head3;
+        while (ptr2 != null && ptr3 != null) {
+            ptr2.elem = (int)ptr2.elem + (int)ptr3.elem;
+            if ((int)ptr2.elem > 9) {
+                ptr2.elem = (int)ptr2.elem%10;
+            }
+            ptr2 = ptr2.next;
+            ptr3 = ptr3.next;
+        }
+
+        tail.next = head2;
+
+        return head1;
     }
 
     //NOTE: if you find any issue with the driver code please inform AIB

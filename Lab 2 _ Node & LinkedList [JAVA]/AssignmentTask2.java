@@ -5,9 +5,41 @@ public class AssignmentTask2{
     // MUST SUBMIT this method
     public static Node organizeBooks(Node head, Integer[] popularity) {
         
-        //TO DO
+        if (head == null || head.next == null) {
+            return head;
+        }
 
-        return null; // Remove this when you're ready to return the new head
+        Node curr, next;
+        boolean swapped;
+        int n = popularity.length;
+
+        do {
+            swapped = false;
+            curr = head;
+            next = curr.next;
+
+            for (int i = 0; i < n - 1 && next != null; i++) {
+                
+                if (popularity[i] < popularity[i+1]) {
+                    Object temp = curr.elem;
+                    curr.elem = next.elem;
+                    next.elem = temp;
+
+                    int tempP = popularity[i];
+                    popularity[i] = popularity[i+1];
+                    popularity[i+1] = tempP;
+
+                    swapped = true;
+                }
+
+                curr = curr.next;
+                next = next.next;
+            }
+            n--;
+
+        } while (swapped);
+
+        return head;
     }
 
     //NOTE: if you find any issue with the driver code please inform AIB

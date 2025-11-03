@@ -6,12 +6,15 @@ public class AssignmentTask1 {
     // After you're done coding  MUST SUBMIT this method
     public static String checkSimilar( Node building1, Node building2 ){
         
-        //You're not suppose to create any new Linked List for this task
+        Node list1 = building1;
+        Node list2 = building2;
+        while (list1 != null && list2 != null) {
+            if (!list1.elem.equals(list2.elem)) return "Not similar";
+            list1 = list1.next;
+            list2 = list2.next;
+        }
         
-        //TODO
-
-        //Once you're ready to return the String delete the following line
-        return null;
+        return (list1 == null && list2 == null) ? "Similar" : "Not similar";
     }
 
     //NOTE: if you find any issue with the driver code please inform AIB
