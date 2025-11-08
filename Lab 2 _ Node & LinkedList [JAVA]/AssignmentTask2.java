@@ -9,35 +9,35 @@ public class AssignmentTask2{
             return head;
         }
 
-        Node curr, next;
-        boolean swapped;
+        Node currNode, nextNode;
+        boolean isSwapped;
         int n = popularity.length;
 
         do {
-            swapped = false;
-            curr = head;
-            next = curr.next;
+            isSwapped = false;
+            currNode = head;
+            nextNode = currNode.next;
 
-            for (int i = 0; i < n - 1 && next != null; i++) {
+            for (int i = 0; i < n - 1 && nextNode != null; i++) {
                 
                 if (popularity[i] < popularity[i+1]) {
-                    Object temp = curr.elem;
-                    curr.elem = next.elem;
-                    next.elem = temp;
+                    Object temp = currNode.elem;
+                    currNode.elem = nextNode.elem;
+                    nextNode.elem = temp;
 
                     int tempP = popularity[i];
                     popularity[i] = popularity[i+1];
                     popularity[i+1] = tempP;
 
-                    swapped = true;
+                    isSwapped = true;
                 }
 
-                curr = curr.next;
-                next = next.next;
+                currNode = currNode.next;
+                nextNode = nextNode.next;
             }
             n--;
 
-        } while (swapped);
+        } while (isSwapped);
 
         return head;
     }

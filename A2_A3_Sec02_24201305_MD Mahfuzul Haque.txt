@@ -1,0 +1,198 @@
+Assignment Task 1:
+
+    public static String checkSimilar( Node building1, Node building2 ){
+        
+        Node currNode1 = building1;
+        Node currNode2 = building2;
+        while (currNode1 != null && currNode2 != null) {
+            if (!currNode1.elem.equals(currNode2.elem)) return "Not similar";
+            currNode1 = currNode1.next;
+            currNode2 = currNode2.next;
+        }
+        
+        return (currNode1 == null && currNode2 == null) ? "Similar" : "Not similar";
+    }
+
+
+
+Assignment Task 2:
+
+    public static Node organizeBooks(Node head, Integer[] popularity) {
+        
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node currNode, nextNode;
+        boolean isSwapped;
+        int n = popularity.length;
+
+        do {
+            isSwapped = false;
+            currNode = head;
+            nextNode = currNode.next;
+
+            for (int i = 0; i < n - 1 && nextNode != null; i++) {
+                
+                if (popularity[i] < popularity[i+1]) {
+                    Object temp = currNode.elem;
+                    currNode.elem = nextNode.elem;
+                    nextNode.elem = temp;
+
+                    int tempP = popularity[i];
+                    popularity[i] = popularity[i+1];
+                    popularity[i+1] = tempP;
+
+                    isSwapped = true;
+                }
+
+                currNode = currNode.next;
+                nextNode = nextNode.next;
+            }
+            n--;
+
+        } while (isSwapped);
+
+        return head;
+    }
+
+
+Assignment Task 3:
+
+        public static Node alternateMerge( Node head1, Node head2 ){
+        
+        Node currNode1 = head1;
+        Node currNode2 = head2;
+        Node nextNode1, nextNode2;
+
+        while (currNode1 != null && currNode2 != null) {
+            nextNode1 = currNode1.next;
+            nextNode2 = currNode2.next;
+            currNode1.next = currNode2;
+            currNode2.next = nextNode1;
+            currNode1 = nextNode1;
+            currNode2 = nextNode2;
+        }
+        return head1;
+    }
+
+
+Assignment Task 4:
+
+        public static Node idGenerator(Node head1, Node head2, Node head3) {
+        
+        Node prevNode = null;
+        Node currNode = head1;
+        Node tail = head1;
+        
+
+        while (currNode != null) {
+            Node next = currNode.next;
+            next = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = next;
+        }
+
+        head1 = prevNode;
+
+
+        Node ptr2 = head2;
+        Node ptr3 = head3;
+        while (ptr2 != null && ptr3 != null) {
+            ptr2.elem = (int)ptr2.elem + (int)ptr3.elem;
+            if ((int)ptr2.elem > 9) {
+                ptr2.elem = (int)ptr2.elem%10;
+            }
+            ptr2 = ptr2.next;
+            ptr3 = ptr3.next;
+        }
+
+        tail.next = head2;
+
+        return head1;
+    }
+
+
+Assignment Task 5:
+
+    public static void sumOddAppend(Node dh) {
+        Node currNode = dh.next;
+        Node prevNode = dh;
+        int sumOdd = 0;
+
+        while (currNode != dh) {
+            if ((Integer) currNode.elem % 2 != 0) {
+                sumOdd += (Integer) currNode.elem;
+                prevNode.next = currNode.next;
+                currNode = currNode.next;
+            } else {
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            
+        }
+
+        if (sumOdd > 0) {
+            Node newNode = new Node(sumOdd);
+            prevNode.next = newNode;
+            newNode.next = dh;
+        }
+    }
+
+
+Assignment Task 6:
+
+    public static void pairJoin(DNode dh1, DNode dh2) {
+        DNode a = dh1.next;
+        DNode b = dh2.next;
+
+        while (a != null && b != null) {
+            DNode aNext = a.next;
+            DNode bNext = b.next;
+
+            a.next = b;
+            b.prev = a;
+
+            if (aNext != null) {
+                b.next = aNext;
+                aNext.prev = b;
+            } else {
+                b.next = dh1;
+                dh1.prev = b;
+                break;
+            }
+
+            a = aNext;
+            b = bNext;
+        }
+    }
+
+
+Assignment Task 7:
+
+    public static void rangeMove(DNode dh, int start, int end) {
+        DNode tail = dh.prev;
+        DNode currNode = dh.next;
+
+        DNode originalTail = tail;
+
+        while (currNode != originalTail) {
+            DNode next = currNode.next;
+
+            if ((Integer)currNode.elem >= start && (Integer)currNode.elem <= end) {
+                
+                currNode.prev.next = currNode.next;
+                currNode.next.prev = currNode.prev;
+
+                tail.next = currNode;
+                currNode.prev = tail;
+                currNode.next = dh;
+                dh.prev = currNode;
+                tail = currNode;
+            }
+
+            currNode = next;
+            
+        }
+    }

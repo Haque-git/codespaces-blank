@@ -4,17 +4,17 @@ public class AssignmentTask3 {
     // MUST SUBMIT this method
     public static Node alternateMerge( Node head1, Node head2 ){
         
-        Node list1 = head1;
-        Node list2 = head2;
-        Node temp1, temp2;
+        Node currNode1 = head1;
+        Node currNode2 = head2;
+        Node nextNode1, nextNode2;
 
-        while (list1 != null && list2 != null) {
-            temp1 = list1.next;
-            temp2 = list2.next;
-            list1.next = list2;
-            list2.next = temp1;
-            list1 = temp1;
-            list2 = temp2;
+        while (currNode1 != null && currNode2 != null) {
+            nextNode1 = currNode1.next;
+            nextNode2 = currNode2.next;
+            currNode1.next = currNode2;
+            currNode2.next = nextNode1;
+            currNode1 = nextNode1;
+            currNode2 = nextNode2;
         }
         return head1;
     }

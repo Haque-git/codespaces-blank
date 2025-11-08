@@ -4,20 +4,20 @@ public class AssignmentTask4{
     // MUST SUBMIT this method
     public static Node idGenerator(Node head1, Node head2, Node head3) {
         
-        Node prev = null;
-        Node curr = head1;
+        Node prevNode = null;
+        Node currNode = head1;
         Node tail = head1;
         
 
-        while (curr != null) {
-            Node next = curr.next;
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        while (currNode != null) {
+            Node next = currNode.next;
+            next = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = next;
         }
 
-        head1 = prev;
+        head1 = prevNode;
 
 
         Node ptr2 = head2;

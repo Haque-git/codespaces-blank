@@ -2,7 +2,29 @@ public class AssignmentTask7 {
 
     //SUBMIT ONLY THIS METHOD
     public static void rangeMove(DNode dh, int start, int end) {
-        // TO DO
+        DNode tail = dh.prev;
+        DNode currNode = dh.next;
+
+        DNode originalTail = tail;
+
+        while (currNode != originalTail) {
+            DNode next = currNode.next;
+
+            if ((Integer)currNode.elem >= start && (Integer)currNode.elem <= end) {
+                
+                currNode.prev.next = currNode.next;
+                currNode.next.prev = currNode.prev;
+
+                tail.next = currNode;
+                currNode.prev = tail;
+                currNode.next = dh;
+                dh.prev = currNode;
+                tail = currNode;
+            }
+
+            currNode = next;
+            
+        }
     }
 
     //DO NOT SUBMIT THE DRIVER CODE BELOW
